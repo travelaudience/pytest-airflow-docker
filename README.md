@@ -3,14 +3,21 @@
 This dockerfile contains python and all dependencies to run pytest tests of airflow jobs.
 Installing python dependencies takes multiple minutes, so we prefer to do this once in a dockerfile rather than before every test. It is also used by the dockerfile for local execution.
 
-
-## Build
+## Local Build
 
 ```bash
-docker build . -t python-airflow:3.6.9_1.10.3_273.0.0
+docker build . -t python-airflow:local
 ```
 
-The tag is a combination of Python & Airflow & GCloud versions
+## CI Build
+
+The image is hosted in quay.io: https://quay.io/repository/travelaudience/pytest-airflow-docker
+
+A git tag can be used to trigger a new build. The convention used is:
+```
+3.6.9_1.10.3_273.0.0
+```
+This is a combination of Python & Airflow & GCloud versions.
 
 
 ## Usage
@@ -18,7 +25,7 @@ The tag is a combination of Python & Airflow & GCloud versions
 Mount the source code you would like to test in `/src`. For example
 
 ```bash
-docker run --rm -it . -v {PATH_TO_CODE}:/src python-airflow
+docker run --rm -it . -v {PATH_TO_CODE}:/src quay.io/travelaudience/pytest-airflow-docker:3.6.9_1.10.3_273.0.0
 ```
 
 ### Debugging
@@ -26,7 +33,7 @@ docker run --rm -it . -v {PATH_TO_CODE}:/src python-airflow
 Launch bash in the container with
 
 ```bash
-docker run --rm -it --entrypoint=/bin/bash -v {PATH_TO_CODE}:/src python-airflow
+docker run --rm -it --entrypoint=/bin/bash -v {PATH_TO_CODE}:/src quay.io/travelaudience/pytest-airflow-docker:3.6.9_1.10.3_273.0.0
 ```
 
 
