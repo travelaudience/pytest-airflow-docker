@@ -15,9 +15,9 @@ The image is hosted in quay.io: https://quay.io/repository/travelaudience/pytest
 
 A git tag can be used to trigger a new build. The convention used is:
 ```
-3.6.9_1.10.3_273.0.0
+3.6.9_1.10.3_276.0.0_1.0.1
 ```
-This is a combination of Python & Airflow & GCloud versions.
+This is a combination of Python & Airflow & GCloud & docker image versions.
 
 
 ## Usage
