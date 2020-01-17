@@ -78,16 +78,13 @@ libpq-dev \
         /usr/share/doc \
         /usr/share/doc-base
 
-RUN curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz && \
-    tar xzf google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz && \
-    rm google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz
 
-ENV PATH $PATH:/google-cloud-sdk/bin
+# Follow instructions on https://cloud.google.com/sdk/docs/downloads-apt-get
+RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list \
+&& curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg add - \
+&& apt-get update -y \
+&& apt-get install google-cloud-sdk=$CLOUD_SDK_VERSION -y
 
-# RUN echo "----- debug ------" \
-#     && python --version \
-#     && gcloud --version \
-#     && airflow version
 
 COPY entrypoint.sh /entrypoint.sh
 
