@@ -2,7 +2,7 @@ FROM python:3.6.9-slim-stretch
 
 # Versions
 ARG AIRFLOW_VERSION=1.10.3
-ARG CLOUD_SDK_VERSION=273.0.0
+ARG CLOUD_SDK_VERSION=276.0.0
 ARG AIRFLOW_DEPS="slack,google_auth,kubernetes"
 ARG PYTHON_DEPS=""
 
@@ -83,7 +83,8 @@ libpq-dev \
 RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list \
 && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg add - \
 && apt-get update -y \
-&& apt-get install google-cloud-sdk=$CLOUD_SDK_VERSION -y
+&& apt-get install -y google-cloud-sdk=${CLOUD_SDK_VERSION}-0 \
+kubectl && gcloud --version
 
 
 COPY entrypoint.sh /entrypoint.sh
