@@ -62,6 +62,7 @@ libpq-dev \
     && pip install pandas-gbq \
     && pip install pyasn1 \
     && pip install pyOpenSSL \
+    && pip install werkzeug==0.16.0 \
     && pip install pytest \
     && pip install pytz \
     && pip install "redis==${REDIS_VERSION}" \
