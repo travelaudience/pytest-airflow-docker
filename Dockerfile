@@ -55,6 +55,7 @@ libpq-dev \
     && pip install grpcio-tools \
     && pip install google-cloud \
     && pip install google-cloud-container \
+    && pip install google-cloud-datacatalog \
     && pip install grpcio \
     && pip install httplib2 \
     && pip install ndg-httpsclient \
