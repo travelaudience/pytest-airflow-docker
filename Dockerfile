@@ -1,4 +1,4 @@
-FROM python:3.6.9-slim-stretch
+FROM python:3.6.6-slim-stretch
 
 # Versions
 ARG AIRFLOW_VERSION=1.10.3
