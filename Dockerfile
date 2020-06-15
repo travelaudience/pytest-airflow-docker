@@ -49,6 +49,8 @@ libpq-dev \
     && locale-gen \
     && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 \
     && pip install -U pip setuptools psycopg2-binary \
+    # Add dataclasses, a python 3.7 feature, to python 3.6. Remove for python version 3.7+ \
+    && pip install dataclasses \
     && pip install flask==$FLASK_VERSION \
     && pip install google-api-python-client \
     && pip install google-cloud-storage \
@@ -64,6 +66,8 @@ libpq-dev \
     && pip install pyasn1 \
     && pip install pyOpenSSL \
     && pip install pytest \
+    && pip install mock \
+    && pip install pytest-mock \
     && pip install pytz \
     && pip install "redis==${REDIS_VERSION}" \
     && pip install apache-airflow[crypto,celery,postgres,hive,jdbc,mysql,ssh${AIRFLOW_DEPS:+,}${AIRFLOW_DEPS}]==${AIRFLOW_VERSION} \
