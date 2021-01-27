@@ -66,6 +66,7 @@ libpq-dev \
     && pip install pyasn1 \
     && pip install pyOpenSSL \
     && pip install werkzeug==0.16.0 \
+    && pip install SQLAlchemy==1.3.15 \
     && pip install pytest \
     && pip install mock \
     && pip install pytest-mock \
