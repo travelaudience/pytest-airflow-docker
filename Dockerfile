@@ -1,7 +1,7 @@
 FROM python:3.6.6-slim-stretch
 
 # Versions
-ARG AIRFLOW_VERSION=1.10.10
+ARG AIRFLOW_VERSION=1.10.14
 ARG CLOUD_SDK_VERSION=276.0.0
 ARG AIRFLOW_DEPS="slack,google_auth,kubernetes"
 ARG PYTHON_DEPS=""
