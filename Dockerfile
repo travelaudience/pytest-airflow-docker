@@ -51,6 +51,7 @@ libpq-dev \
     && pip install -U pip setuptools psycopg2-binary \
     # Add dataclasses, a python 3.7 feature, to python 3.6. Remove for python version 3.7+ \
     && pip install dataclasses \
+    && pip install great_expectations \
     && pip install flask==$FLASK_VERSION \
     && pip install google-api-python-client \
     && pip install google-cloud-storage \
@@ -66,6 +67,7 @@ libpq-dev \
     && pip install pyasn1 \
     && pip install pyOpenSSL \
     && pip install werkzeug==0.16.0 \
+    && pip install kombu==4.4.0 \
     && pip install SQLAlchemy==1.3.15 \
     && pip install pytest \
     && pip install mock \
@@ -96,6 +98,8 @@ kubectl && gcloud --version
 
 COPY entrypoint.sh /entrypoint.sh
 
+COPY ge_e /ge_e
+RUN chmod +x ge_e
 RUN chmod +x entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
