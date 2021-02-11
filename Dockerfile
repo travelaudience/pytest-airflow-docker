@@ -63,9 +63,11 @@ libpq-dev \
     && pip install ndg-httpsclient \
     && pip install oauth2client \
     && pip install pandas-gbq \
-    && pip install pyasn1 \
+    && pip install pybigquery \
     && pip install pyOpenSSL \
     && pip install pytest \
+    && pip install pybigquery \
+    && pip install great_expectations \
     && pip install mock \
     && pip install pytest-mock \
     && pip install pytz \
