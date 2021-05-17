@@ -55,7 +55,6 @@ libpq-dev \
     && pip install google-api-python-client \
     && pip install google-cloud-storage \
     && pip install grpcio-tools \
-    && pip install google-cloud \
     && pip install google-cloud-container \
     && pip install google-cloud-datacatalog \
     && pip install grpcio \
