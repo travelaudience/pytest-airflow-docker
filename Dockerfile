@@ -52,10 +52,10 @@ libpq-dev \
     # Add dataclasses, a python 3.7 feature, to python 3.6. Remove for python version 3.7+ \
     && pip install dataclasses \
     && pip install flask==$FLASK_VERSION \
-    && pip install google-api-python-client \
-    && pip install google-cloud-storage \
+    && pip install "google-api-python-client==1.7.8" \
+    && pip install "google-cloud-storage==1.13.2" \
     && pip install grpcio-tools \
-    && pip install google-cloud-container \
+    && pip install "google-cloud-container==0.2.1" \
     && pip install google-cloud-datacatalog \
     && pip install grpcio \
     && pip install httplib2 \
