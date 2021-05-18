@@ -48,27 +48,28 @@ libpq-dev \
     && sed -i 's/^# en_US.UTF-8 UTF-8$/en_US.UTF-8 UTF-8/g' /etc/locale.gen \
     && locale-gen \
     && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 \
-    && pip install -U pip setuptools psycopg2-binary \
+    && pip install "pip==21.1.1" \
+    && pip install "setuptools==56.2.0" \
+    && pip install "psycopg2-binary==2.8.6" \
     # Add dataclasses, a python 3.7 feature, to python 3.6. Remove for python version 3.7+ \
-    && pip install dataclasses \
+    && pip install "dataclasses==0.8" \
     && pip install flask==$FLASK_VERSION \
-    && pip install google-api-python-client \
-    && pip install google-cloud-storage \
-    && pip install grpcio-tools \
-    && pip install google-cloud \
-    && pip install google-cloud-container \
-    && pip install google-cloud-datacatalog \
-    && pip install grpcio \
-    && pip install httplib2 \
-    && pip install ndg-httpsclient \
-    && pip install oauth2client \
-    && pip install pandas-gbq \
-    && pip install pyasn1 \
-    && pip install pyOpenSSL \
-    && pip install pytest \
-    && pip install mock \
-    && pip install pytest-mock \
-    && pip install pytz \
+    && pip install "google-api-python-client==1.7.8" \
+    && pip install "google-cloud-storage==1.13.2" \
+    && pip install "grpcio-tools==1.37.1" \
+    && pip install "google-cloud-container==0.2.1" \
+    && pip install "google-cloud-datacatalog==3.1.1" \
+    && pip install "grpcio==1.37.1" \
+    && pip install "httplib2==0.19.1" \
+    && pip install "ndg-httpsclient==0.5.1" \
+    && pip install "oauth2client==4.1.3" \
+    && pip install "pandas-gbq==0.14.1" \
+    && pip install "pyasn1==0.4.8" \
+    && pip install "pyOpenSSL==20.0.1" \
+    && pip install "pytest==6.2.4" \
+    && pip install "mock==4.0.3" \
+    && pip install "pytest-mock==3.6.1" \
+    && pip install "pytz==2021.1" \
     && pip install "redis==${REDIS_VERSION}" \
     && pip install apache-airflow[crypto,celery,postgres,hive,jdbc,mysql,ssh${AIRFLOW_DEPS:+,}${AIRFLOW_DEPS}]==${AIRFLOW_VERSION} \
     && if [ -n "${PYTHON_DEPS}" ]; then pip install ${PYTHON_DEPS}; fi \
