@@ -1,2 +1,2 @@
-local_scripts.md
-.idea/*
+*.iml
+.idea

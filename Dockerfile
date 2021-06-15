@@ -1,7 +1,8 @@
 FROM python:3.6.6-slim-stretch
 
 # Versions
-ARG AIRFLOW_VERSION=1.10.3
+# Check constraints: https://github.com/apache/airflow/blob/constraints-1-10/constraints-3.8.txt
+ARG AIRFLOW_VERSION=1.10.15
 ARG CLOUD_SDK_VERSION=340.0.0
 ARG AIRFLOW_DEPS="slack,google_auth,kubernetes"
 ARG PYTHON_DEPS=""
@@ -17,8 +18,6 @@ ENV LANGUAGE=en_US.UTF-8 \
     LC_CTYPE=en_US.UTF-8 \
     LC_MESSAGES=en_US.UTF-8 \
     # The flask version is hardcoded to 1.0.4, this is needed for airflow 1.10.3
-    FLASK_VERSION=1.0.4 \
-    REDIS_VERSION=3.2 \
     AIRFLOW_GPL_UNIDECODE=yes
 
 RUN set -ex \
@@ -46,14 +45,17 @@ libpq-dev \
         netcat \
         rsync \
     && sed -i 's/^# en_US.UTF-8 UTF-8$/en_US.UTF-8 UTF-8/g' /etc/locale.gen \
-    && locale-gen \
-    && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 \
-    && pip install "pip==21.1.1" \
+    && locale-gen en_US.UTF-8 \
+    && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
+
+RUN pip install "pip==21.1.1" \
     && pip install "setuptools==56.2.0" \
     && pip install "psycopg2-binary==2.8.6" \
     # Add dataclasses, a python 3.7 feature, to python 3.6. Remove for python version 3.7+ \
     && pip install "dataclasses==0.8" \
-    && pip install flask==$FLASK_VERSION \
+    && pip install "SQLAlchemy==1.3.23" \
+    && pip install "Flask-SQLAlchemy==2.4.4" \
+    && pip install "Flask==1.1.2" \
     && pip install "google-api-python-client==1.7.8" \
     && pip install "google-cloud-storage==1.13.2" \
     && pip install "grpcio-tools==1.37.1" \
@@ -70,7 +72,7 @@ libpq-dev \
     && pip install "mock==4.0.3" \
     && pip install "pytest-mock==3.6.1" \
     && pip install "pytz==2021.1" \
-    && pip install "redis==${REDIS_VERSION}" \
+    && pip install "redis==3.5.3" \
     && pip install apache-airflow[crypto,celery,postgres,hive,jdbc,mysql,ssh${AIRFLOW_DEPS:+,}${AIRFLOW_DEPS}]==${AIRFLOW_VERSION} \
     && if [ -n "${PYTHON_DEPS}" ]; then pip install ${PYTHON_DEPS}; fi \
     && apt-get purge --auto-remove -yqq $buildDeps \
